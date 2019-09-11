@@ -7,7 +7,7 @@ Classes for generating primitives using the [VoxelFuse](https://github.com/cdbra
 
 The voxelfuse_primitives library can be installed using pip.
 
-    pip3 install voxelfuse_primitives
+    pip3 install voxelfuse-primitives
     
 The classes needed by your script can then be imported in Python.  For example:
 
