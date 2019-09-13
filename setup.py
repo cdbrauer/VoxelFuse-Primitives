@@ -8,7 +8,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
     name="voxelfuse_primitives",
-    version="1.0.1",
+    version="1.0.2",
     author="Cole Brauer",
     description="Classes for generating primitives using the VoxelFuse library",
     long_description=long_description,
