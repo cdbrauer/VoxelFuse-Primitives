@@ -14,15 +14,15 @@ class Linkage(VoxelModel):
 
         # Remove empty space and measure height of mode;
         self.fitWorkspace()
-        z_len = len(self.model[0, :, 0, 0])
+        z_len = len(self.voxels[0, 0, :])
 
         # Isolate two halves of tab template
         tab_p1 = template.isolateMaterial(1)
         tab_p2 = template.isolateMaterial(2)
 
         # Compute offsets for tab origin
-        tab_l = int(len(template.model[0, 0, :, 0]) - 1)
-        tab_w = int((len(template.model[:, 0, 0, 0]) - 1) / 2)
+        tab_l = int(len(template.voxels[:, 0, 0]) - 1)
+        tab_w = int((len(template.voxels[0, :, 0]) - 1) / 2)
 
         new_model = Linkage.emptyLike(self)
 
@@ -37,8 +37,10 @@ class Linkage(VoxelModel):
                 y2 = y_coords[i] - (r == 1) + (r == 3)
 
                 # Set material of tab based on base model materials
-                tab_p1 = tab_p1.setMaterialVector(self.model[y, z, x, :])
-                tab_p2 = tab_p2.setMaterialVector(self.model[y2, z, x2, :])
+                tab_p1_mat = self.voxels[x, y, z]
+                tab_p2_mat = self.voxels[x2, y2, z]
+                tab_p1 = tab_p1.setMaterialVector(self.materials[tab_p1_mat])
+                tab_p2 = tab_p2.setMaterialVector(self.materials[tab_p2_mat])
 
                 # Combine tab halves
                 tab_full = tab_p1.union(tab_p2)
