@@ -51,7 +51,7 @@ class Linkage(VoxelModel):
                 tab_full.z = z
 
                 # Rotate and add the tab to the new model
-                new_model = new_model.union(tab_full.rotate90(r), 'r')
+                new_model = new_model.union(tab_full.rotate90(r))
 
         # Add remaining voxels to the new model
         new_model = new_model.union(self)

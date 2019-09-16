@@ -8,7 +8,7 @@ Generate coupon for tensile testing
 import PyQt5.QtGui as qg
 import sys
 import numpy as np
-from voxelfuse.voxel_model import VoxelModel
+from voxelfuse.voxel_model import VoxelModel, Axes, Process
 from voxelfuse.mesh import Mesh
 from voxelfuse.plot import Plot
 from voxelfuse.materials import material_properties
@@ -89,11 +89,11 @@ if __name__=='__main__':
         cast_components = coupon.difference(printed_components)
 
         # Generate mold body
-        mold_model = cast_components.dilate(moldWallThickness+1, plane='xy')
+        mold_model = cast_components.dilate(moldWallThickness+1, plane=Axes.XY)
         mold_model = mold_model.difference(cast_components)
 
         # Find clearance to prevent mold from sicking to model
-        mold_clearance = printed_components.dilate(moldGap, plane='xy')
+        mold_clearance = printed_components.dilate(moldGap, plane=Axes.XY)
 
         # Apply clearance to body
         mold_model = mold_model.difference(mold_clearance)
@@ -103,7 +103,7 @@ if __name__=='__main__':
         coupon_supported = coupon_supported.union(mold_model)
 
     if fixture:  # Generate a fixture around the full part that can be used to support a mold
-        fixture_model = coupon.web('laser', 1, 5)
+        fixture_model = coupon.web(Process.LASER, 1, 5)
         fixture_model = fixture_model.setMaterial(3)
         coupon_supported = coupon_supported.union(fixture_model)
 
