@@ -9,4 +9,4 @@ Primitive generation classes
 """
 
 name = "voxelfuse_primitives"
-__version__ = "1.0.2"
+__version__ = "1.0.3"

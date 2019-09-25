@@ -46,9 +46,11 @@ class Linkage(VoxelModel):
                 tab_full = tab_p1.union(tab_p2)
 
                 # Set coordinates where tab will be inserted
-                tab_full.x = x - ((r == 1) * tab_w) - ((r == 2) * tab_l) - ((r == 3) * tab_w)
-                tab_full.y = y - ((r == 0) * tab_w) - ((r == 1) * tab_l) - ((r == 2) * tab_w)
-                tab_full.z = z
+                x_new = x - ((r == 1) * tab_w) - ((r == 2) * tab_l) - ((r == 3) * tab_w)
+                y_new = y - ((r == 0) * tab_w) - ((r == 1) * tab_l) - ((r == 2) * tab_w)
+                z_new = z
+
+                tab_full.coords = (x_new, y_new, z_new)
 
                 # Rotate and add the tab to the new model
                 new_model = new_model.union(tab_full.rotate90(r))

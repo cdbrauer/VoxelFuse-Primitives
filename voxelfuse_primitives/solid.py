@@ -13,13 +13,13 @@ class Solid(VoxelModel):
     @classmethod
     def cube(cls, size = 1, coords = (0, 0, 0), material = 1):
         model_data = np.ones((size, size, size), dtype=np.int32)
-        model = cls(model_data, generateMaterials(material), coords[0], coords[1], coords[2])
+        model = cls(model_data, generateMaterials(material), coords)
         return model
 
     @classmethod
     def cuboid(cls, size = (1, 1, 1), coords = (0, 0, 0), material=1):
         model_data = np.ones((size[0], size[1], size[2]), dtype=np.int32)
-        model = cls(model_data, generateMaterials(material), coords[0], coords[1], coords[2])
+        model = cls(model_data, generateMaterials(material), coords)
         return model
 
     @classmethod
@@ -38,7 +38,7 @@ class Solid(VoxelModel):
                     if r < (radius + .5):
                         model_data[x, y, z] = 1
 
-        model = cls(model_data, generateMaterials(material), coords[0]-radius, coords[1]-radius, coords[2]-radius)
+        model = cls(model_data, generateMaterials(material), (coords[0]-radius, coords[1]-radius, coords[2]-radius))
         return model
 
     @classmethod
@@ -57,7 +57,7 @@ class Solid(VoxelModel):
 
         model_data = np.repeat(model_data, height, 2)
 
-        model = cls(model_data, generateMaterials(material), coords[0]-radius, coords[1]-radius, coords[2])
+        model = cls(model_data, generateMaterials(material), (coords[0]-radius, coords[1]-radius, coords[2]))
         return model
 
     @classmethod
@@ -77,7 +77,7 @@ class Solid(VoxelModel):
                     if r < (radius + .5):
                         model_data[x, y, z] = 1
 
-        model = cls(model_data, generateMaterials(material), coords[0] - max_radius, coords[1] - max_radius, coords[2])
+        model = cls(model_data, generateMaterials(material), (coords[0]-max_radius, coords[1]-max_radius, coords[2]))
         return model
 
     @classmethod
@@ -93,7 +93,7 @@ class Solid(VoxelModel):
             else:
                 model_data[radius:-radius, radius:-radius, z].fill(1)
 
-        model = cls(model_data, generateMaterials(material), coords[0] - max_radius, coords[1] - max_radius, coords[2])
+        model = cls(model_data, generateMaterials(material), (coords[0]-max_radius, coords[1]-max_radius, coords[2]))
         return model
 
 def generateMaterials(m):
