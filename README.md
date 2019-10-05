@@ -1,5 +1,7 @@
+**Deprecated - functionality from this package has been merged with the main [VoxelFuse](https://github.com/cdbrauer/VoxelFuse) repository**
+
 # VoxelFuse-Primitives
-Classes for generating primitives using the [VoxelFuse](https://github.com/cdbrauer/VoxelFuse) library.
+Classes for generating primitives using the [VoxelFuse] library.
 
 ![Example 1](../master/images/main.png?raw=true)
 
